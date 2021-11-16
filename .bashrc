@@ -68,6 +68,7 @@ alias l='ls -CF'
 alias ra="./run-all.sh"
 alias robbo="source ~/.venv/bin/activate"
 alias so='source .venv/bin/activate'
+alias new-venv='python3 -m venv .venv && so && pip install --upgrade pip && pip install wheel'
 
 if [ ! -x $HOME/.fzf ]; then
     git clone --depth 1 git@github.com:junegunn/fzf.git ~/.fzf
