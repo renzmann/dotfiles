@@ -3,13 +3,21 @@ cd $HOME
 
 set -e
 
+
 sudo npm install -g bash-language-server
-sudo npm install -g pyright
 sudo npm install -g yaml-language-server
 
-curl -LO https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage
-chmod u+x nvim.appimage
-mv nvim.appimage $HOME/.local/bin
+if [[ $OSTYPE == "linux"* ]]; then
+    curl -LO https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage
+    chmod u+x nvim.appimage
+    mkdir -p $HOME/.local/bin
+    mv nvim.appimage $HOME/.local/bin/nvim
+elif [[ $OSTYPE == "darwin"* ]]; then
+    brew install neovim
+else
+    echo "OS '$OSTYPE' not understood"
+    exit 1
+fi
 
 if [[ -z $(grep 'alias nvim=' $HOME/.bashrc) ]]; then
     echo "alias nvim='~/.local/bin/nvim.appimage'" >> $HOME/.bashrc
@@ -41,5 +49,13 @@ if [ ! -d $HOME/.nvim.venv ]; then
     python3 -m venv $HOME/.nvim.venv
 fi
 
-source $HOME/.nvim.venv/bin/activate && pip install --upgrade pip black neovim flake8 && deactivate
+export PIPX_BIN_DIR=$HOME/.nvim.venv/bin
+source $HOME/.nvim.venv/bin/activate \
+    && pip install --upgrade pipx pip black neovim flake8 python-lsp-server[all] \
+    && deactivate
+
+if [[ -z $(grep 'export PATH=$HOME/.nvim.venv/bin' $HOME/.bashrc) ]]; then
+    echo 'export PATH=$PATH:$HOME/.nvim.venv/bin' >> $HOME/.bashrc
+fi
+
 source $HOME/.bashrc
