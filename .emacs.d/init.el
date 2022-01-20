@@ -133,26 +133,5 @@
 (load-file (concat user-emacs-directory "julia.el"))
 
 
-;; =======================================================================
-;; Wishlist
-;; =======================================================================
-;; (python) syntax highlighting within {} when inside f-string
-;; modify movement to match normal editors, e.g. ctl-arrow to parens
-;; highlight matching paren
-;; search for symbol on C-M-S-n
-;; search for class on C-n
-;; hook for electric-pair mode
-;; C-w and C-S-w for syntax-aware expansion/contraction
-;; don't have vim-mode shadow useful key idea-like commands
-;; add hooks for each language in their source files
-;; C-S-j for smart join line
-;; highlight matching instances of word under cursor
-;; C-S-<BS> for jump to last edit
-;; M-S-<F9> debug menu
-;; M-S-<F10> run menu
-;; C-q documentation
-;; C-p parameter info
-;; C-S-; fullsize/reset window
-
 (provide 'init)
 ;;; init.el ends here
