@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 cd $HOME
 
 set -e
@@ -8,7 +8,7 @@ sudo npm install -g bash-language-server
 sudo npm install -g yaml-language-server
 
 if [[ $OSTYPE == "linux"* ]]; then
-    curl -LO https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage
+    curl -LO https://github.com/neovim/neovim/releases/download/v0.6.1/nvim.appimage
     chmod u+x nvim.appimage
     mkdir -p $HOME/.local/bin
     mv nvim.appimage $HOME/.local/bin/nvim
