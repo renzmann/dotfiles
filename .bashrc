@@ -1,5 +1,7 @@
 # .bashrc
 
+. $HOME/.func.sh
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -60,22 +62,6 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -lah'
-alias la='ls -A'
-alias l='ls -CF'
-alias ra="./run-all.sh"
-alias robbo="source ~/.venv/bin/activate"
-alias so='source .venv/bin/activate'
-alias new-venv='python3 -m venv .venv && so && pip install --upgrade pip && pip install wheel'
-
-if [ ! -x $HOME/.fzf ]; then
-    git clone --depth 1 git@github.com:junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
-fi
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Make <C-q> work in vim
 stty start undef
